@@ -7,13 +7,79 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/imageContainer_activity_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="20dp"
+        app:cardCornerRadius="16dp"
+        android:layout_marginTop="70dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/main_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/digital_id_logo"/>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/digitalId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DIGITAL ID"
+        android:layout_marginTop="70dp"
+        android:textSize="40sp"
+        android:textFontWeight="400"
+        android:fontFamily="monospace"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageContainer_activity_main"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/fullAppName"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Digital Identity Management System"
+        android:textSize="20sp"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/black"
+        android:fontFamily="monospace"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/digitalId"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/LoginBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="Login"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fullAppName"
+        app:layout_constraintEnd_toStartOf="@id/SignUpBtn"/>
+
+    <TextView
+        android:id="@+id/NewSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New To Digital Id?"
+        app:layout_constraintBottom_toTopOf="@id/SignUpBtn"
+        app:layout_constraintStart_toStartOf="@id/SignUpBtn"
+        app:layout_constraintEnd_toEndOf="@id/SignUpBtn"
+        />
+    <Button
+        android:id="@+id/SignUpBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        app:layout_constraintBaseline_toBaselineOf="@id/LoginBtn"
+        app:layout_constraintStart_toEndOf="@id/LoginBtn"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

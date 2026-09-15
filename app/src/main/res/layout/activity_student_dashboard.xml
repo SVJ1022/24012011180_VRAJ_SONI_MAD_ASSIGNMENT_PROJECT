@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StudentDashboardActivity">
+
+    <TextView
+        android:id="@+id/greetings_student_dashboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="WELCOME"
+        android:layout_marginTop="140dp"
+        android:textSize="20sp"
+        android:fontFamily="monospace"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/studentName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Student Name"
+        android:textSize="35sp"
+        android:fontFamily="monospace"
+        app:layout_constraintStart_toStartOf="@id/greetings_student_dashboard"
+        app:layout_constraintTop_toBottomOf="@id/greetings_student_dashboard"
+        app:layout_constraintEnd_toEndOf="@id/greetings_student_dashboard"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/MaterialCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:elevation="20dp"
+        style="?attr/materialCardViewElevatedStyle"
+        app:layout_constraintStart_toStartOf="@id/studentName"
+        app:layout_constraintTop_toBottomOf="@id/studentName"
+        app:layout_constraintEnd_toEndOf="@id/studentName">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/AppLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/digital_id_logo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/AppName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DIGITAL ID"
+                android:fontFamily="monospace"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="@id/AppLogo"
+                app:layout_constraintTop_toBottomOf="@id/AppLogo"
+                app:layout_constraintEnd_toEndOf="@id/AppLogo"/>
+
+            <TextView
+                android:id="@+id/ViewID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View Your Digital ID"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@id/AppName"
+                app:layout_constraintTop_toBottomOf="@id/AppName"
+                app:layout_constraintEnd_toEndOf="@id/AppName"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <Button
+        android:id="@+id/ViewIDbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View your Digital Id"
+        android:layout_marginTop="30sp"
+        app:layout_constraintStart_toStartOf="@id/MaterialCard"
+        app:layout_constraintTop_toBottomOf="@id/MaterialCard"
+        app:layout_constraintEnd_toEndOf="@id/MaterialCard"/>
+
+    <Button
+        android:id="@+id/LogoutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:layout_marginTop="30sp"
+        app:layout_constraintStart_toStartOf="@id/ViewIDbtn"
+        app:layout_constraintTop_toBottomOf="@id/ViewIDbtn"
+        app:layout_constraintEnd_toEndOf="@id/ViewIDbtn"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
