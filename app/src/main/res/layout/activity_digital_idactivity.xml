@@ -1,10 +1,293 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DigitalIDActivity">
+
+    <!-- APP TITLE -->
+
+    <TextView
+        android:id="@+id/AppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Digital ID"
+        android:layout_marginTop="100dp"
+        android:textSize="32sp"
+        android:fontFamily="monospace"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <!-- DIGITAL ID CARD -->
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/ID_Holder"
+        android:layout_width="350dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="25dp"
+        android:elevation="20dp"
+        app:cardCornerRadius="8dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/AppName"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/IdOrganization"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <!-- RED LEFT STRIP -->
+
+            <View
+                android:id="@+id/studentStrip"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="#C41E3A"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+
+            <!-- STUDENT TEXT -->
+
+            <TextView
+                android:id="@+id/studentStripText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="STUDENT"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif"
+                android:rotation="-90"
+                android:letterSpacing="1.5"
+                app:layout_constraintStart_toStartOf="@id/studentStrip"
+                app:layout_constraintTop_toTopOf="@id/studentStrip"
+                app:layout_constraintBottom_toBottomOf="@id/studentStrip"
+                app:layout_constraintEnd_toEndOf="@id/studentStrip" />
+
+
+            <!-- UNIVERSITY LOGO -->
+
+            <ImageView
+                android:id="@+id/UniversityLogo"
+                android:layout_width="170dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="15dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/university_logo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+
+            <!-- STUDENT PHOTO -->
+
+            <ImageView
+                android:id="@+id/studentImage"
+                android:layout_width="105dp"
+                android:layout_height="125dp"
+                android:layout_marginTop="8dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="@id/UniversityLogo"
+                app:layout_constraintTop_toBottomOf="@id/UniversityLogo"
+                app:layout_constraintEnd_toEndOf="@id/UniversityLogo" />
+
+
+            <!-- STUDENT NAME -->
+
+            <TextView
+                android:id="@+id/studentName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="STUDENT NAME"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#C41E3A"
+                android:fontFamily="sans-serif"
+                android:textAlignment="center"
+                app:layout_constraintStart_toStartOf="@id/studentImage"
+                app:layout_constraintTop_toBottomOf="@id/studentImage"
+                app:layout_constraintEnd_toEndOf="@id/studentImage" />
+
+
+            <!-- ENROLLMENT NUMBER -->
+
+            <TextView
+                android:id="@+id/enrollmentNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="T24012011001"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/studentName"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+
+            <!-- COLLEGE -->
+
+            <TableLayout
+                android:id="@+id/studentDetailsTable"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:stretchColumns="1"
+                app:layout_constraintStart_toEndOf="@id/studentStrip"
+                app:layout_constraintTop_toBottomOf="@id/enrollmentNo"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <!-- COLLEGE -->
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/collegeLabel"
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:text="College:"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/collegeValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="UVPCE"
+                        android:textSize="18sp"
+                        android:layout_weight="1" />
+
+                </TableRow>
+
+
+                <!-- DEGREE -->
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/degreeLabel"
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:text="Degree:"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/degreeValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="B. Tech. (Computer)"
+                        android:textSize="18sp"
+                        android:layout_weight="1" />
+
+                </TableRow>
+
+
+                <!-- B.GROUP -->
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/bGroupLabel"
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:text="B.Group:"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/bGroupValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="18sp"
+                        android:layout_weight="1" />
+
+                </TableRow>
+
+
+                <!-- MOBILE -->
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/mobileLabel"
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:text="Mobile:"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/mobileValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="9997007152"
+                        android:textSize="18sp"
+                        android:layout_weight="1" />
+
+                </TableRow>
+
+
+                <!-- VALIDITY -->
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/validityLabel"
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:text="Validity:"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/validityValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="04/07/2028"
+                        android:textSize="18sp"
+                        android:layout_weight="1" />
+
+                </TableRow>
+
+            </TableLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <!-- BACK BUTTON -->
+
+    <Button
+        android:id="@+id/backBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="BACK"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ID_Holder"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
