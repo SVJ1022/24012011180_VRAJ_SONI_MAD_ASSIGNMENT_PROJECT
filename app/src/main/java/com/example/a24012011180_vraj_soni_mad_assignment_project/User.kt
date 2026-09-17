@@ -1,7 +1,7 @@
 package com.example.a24012011180_vraj_soni_mad_assignment_project
 
 class User(
-    var Id: Int,
+    var Id: Int = 0,
     var fullName:String,
     var email:String,
     var phone:String,

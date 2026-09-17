@@ -1,6 +1,8 @@
 package com.example.a24012011180_vraj_soni_mad_assignment_project
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -15,6 +17,18 @@ class AdminDashboardActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        findViewById<Button>(R.id.ManageStudentBtn).setOnClickListener {
+            Intent(this, StudentListActivity::class.java).also{
+                startActivity(it)
+            }
+        }
+
+        findViewById<Button>(R.id.LogoutBtnAdmin).setOnClickListener {
+            Intent(this, LoginActivity::class.java).also{
+                startActivity(it)
+            }
         }
     }
 }

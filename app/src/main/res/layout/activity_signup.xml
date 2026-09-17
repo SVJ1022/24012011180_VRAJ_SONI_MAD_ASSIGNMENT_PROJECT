@@ -1,168 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbars="vertical"
     tools:context=".SignupActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".SignupActivity">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/imageContainer_activity_signup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="20dp"
-        app:cardCornerRadius="16dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <ImageView
-            android:id="@+id/main_logo"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/imageContainer_activity_signup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/digital_id_logo"/>
+            android:elevation="10dp"
+            app:cardCornerRadius="16dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-    </com.google.android.material.card.MaterialCardView>
+            <ImageView
+                android:id="@+id/main_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/digital_id_logo"/>
 
-    <TextView
-        android:id="@+id/CreateAccountText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Create Account"
-        android:fontFamily="monospace"
-        android:textSize="30sp"
-        android:textAlignment="center"
-        app:layout_constraintStart_toStartOf="@id/imageContainer_activity_signup"
-        app:layout_constraintTop_toBottomOf="@id/imageContainer_activity_signup"
-        app:layout_constraintEnd_toEndOf="@id/imageContainer_activity_signup" />
+        </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/fullNameTextField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/CreateAccountText"
-        app:layout_constraintTop_toBottomOf="@id/CreateAccountText"
-        app:layout_constraintEnd_toEndOf="@id/CreateAccountText"
-        android:layout_marginTop="10dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="350dp"
+        <TextView
+            android:id="@+id/CreateAccountText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Full Name"
-            android:inputType="text"/>
+            android:text="Create Account"
+            android:fontFamily="monospace"
+            android:textSize="30sp"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="@id/imageContainer_activity_signup"
+            app:layout_constraintTop_toBottomOf="@id/imageContainer_activity_signup"
+            app:layout_constraintEnd_toEndOf="@id/imageContainer_activity_signup" />
 
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/EmailTextField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="@id/fullNameTextField"
-        app:layout_constraintTop_toBottomOf="@id/fullNameTextField"
-        app:layout_constraintEnd_toEndOf="@id/fullNameTextField">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="350dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/fullNameTextField"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Email"
-            android:inputType="textEmailAddress"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintStart_toStartOf="@id/CreateAccountText"
+            app:layout_constraintTop_toBottomOf="@id/CreateAccountText"
+            app:layout_constraintEnd_toEndOf="@id/CreateAccountText"
+            android:layout_marginTop="10dp">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/PhoneNew"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="@id/EmailTextField"
-        app:layout_constraintTop_toBottomOf="@id/EmailTextField"
-        app:layout_constraintEnd_toEndOf="@id/EmailTextField">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fullNameInputField"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:hint="Full Name"
+                android:inputType="text"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="350dp"
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/EmailTextField"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Phone"
-            android:inputType="phone"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@id/fullNameTextField"
+            app:layout_constraintTop_toBottomOf="@id/fullNameTextField"
+            app:layout_constraintEnd_toEndOf="@id/fullNameTextField">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/batchYr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="@id/PhoneNew"
-        app:layout_constraintTop_toBottomOf="@id/PhoneNew"
-        app:layout_constraintEnd_toEndOf="@id/PhoneNew">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/EmailInputField"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                android:inputType="textEmailAddress"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="350dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/PhoneNew"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Batch Year (eg. 2024-2028)"
-            android:inputType="text"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@id/EmailTextField"
+            app:layout_constraintTop_toBottomOf="@id/EmailTextField"
+            app:layout_constraintEnd_toEndOf="@id/EmailTextField">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/PasswordCreation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="@id/batchYr"
-        app:layout_constraintTop_toBottomOf="@id/batchYr"
-        app:layout_constraintEnd_toEndOf="@id/batchYr">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/PhoneInputField"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:hint="Phone"
+                android:inputType="phone"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="350dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/batchYr"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Password"
-            android:inputType="textPassword"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@id/PhoneNew"
+            app:layout_constraintTop_toBottomOf="@id/PhoneNew"
+            app:layout_constraintEnd_toEndOf="@id/PhoneNew">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ConfirmPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="@id/PasswordCreation"
-        app:layout_constraintTop_toBottomOf="@id/PasswordCreation"
-        app:layout_constraintEnd_toEndOf="@id/PasswordCreation">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/batchField"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:hint="Batch Year (eg. 2024-2028)"
+                android:inputType="text"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="350dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/PasswordCreation"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Confirm Password"
-            android:inputType="textPassword"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@id/batchYr"
+            app:layout_constraintTop_toBottomOf="@id/batchYr"
+            app:layout_constraintEnd_toEndOf="@id/batchYr">
 
-    <Button
-        android:id="@+id/CreateAccountBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CREATE ACCOUNT"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="@id/ConfirmPassword"
-        app:layout_constraintTop_toBottomOf="@id/ConfirmPassword"
-        app:layout_constraintEnd_toEndOf="@id/ConfirmPassword"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/PasswordInputField"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:inputType="textPassword"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/question2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Already Have an account?"
-        android:fontFamily="monospace"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="@id/CreateAccountBtn"
-        app:layout_constraintTop_toBottomOf="@id/CreateAccountBtn"
-        app:layout_constraintEnd_toEndOf="@id/CreateAccountBtn"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ConfirmPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@id/PasswordCreation"
+            app:layout_constraintTop_toBottomOf="@id/PasswordCreation"
+            app:layout_constraintEnd_toEndOf="@id/PasswordCreation">
 
-    <Button
-        android:id="@+id/signup_activity_loginBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        app:layout_constraintStart_toStartOf="@id/question2"
-        app:layout_constraintTop_toBottomOf="@id/question2"
-        app:layout_constraintEnd_toEndOf="@id/question2"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ConfirmPasswordField"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:hint="Confirm Password"
+                android:inputType="textPassword"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/roleLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@id/ConfirmPassword"
+            app:layout_constraintTop_toBottomOf="@id/ConfirmPassword"
+            app:layout_constraintEnd_toEndOf="@id/ConfirmPassword">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/roleInputField"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:hint="Role (eg. Admin, Student)"
+                android:inputType="textPassword"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/CreateAccountBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CREATE ACCOUNT"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@id/roleLayout"
+            app:layout_constraintTop_toBottomOf="@id/roleLayout"
+            app:layout_constraintEnd_toEndOf="@id/roleLayout"/>
+
+        <TextView
+            android:id="@+id/question2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Already Have an account?"
+            android:fontFamily="monospace"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@id/CreateAccountBtn"
+            app:layout_constraintTop_toBottomOf="@id/CreateAccountBtn"
+            app:layout_constraintEnd_toEndOf="@id/CreateAccountBtn"/>
+
+        <Button
+            android:id="@+id/signup_activity_loginBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            app:layout_constraintStart_toStartOf="@id/question2"
+            app:layout_constraintTop_toBottomOf="@id/question2"
+            app:layout_constraintEnd_toEndOf="@id/question2"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

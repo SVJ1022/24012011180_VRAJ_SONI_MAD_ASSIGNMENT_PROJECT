@@ -269,7 +269,7 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DB_NAME, null,
         LEFT JOIN digital_id
         ON users.id = digital_id.userId
         WHERE users.role = ?
-    """.trimIndent()
+    """
 
         val cursor = db.rawQuery(
             query,
