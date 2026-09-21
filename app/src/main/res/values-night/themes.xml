@@ -1,7 +1,42 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme._24012011180_VRAJ_SONI_MAD_ASSIGNMENT_PROJECT" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+
+    <!-- Dark theme overrides -->
+    <style name="Base.Theme._24012011180_VRAJ_SONI_MAD_ASSIGNMENT_PROJECT"
+        parent="Theme.Material3.DayNight.NoActionBar">
+
+        <!-- Lighter navy for dark mode readability -->
+        <item name="colorPrimary">#5C6BC0</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryContainer">#1A237E</item>
+        <item name="colorOnPrimaryContainer">#C5CAE9</item>
+
+        <item name="colorSecondary">#FFB300</item>
+        <item name="colorOnSecondary">#1C1F2A</item>
+
+        <item name="colorSurface">#1E1E2E</item>
+        <item name="colorOnSurface">#E8EAED</item>
+        <item name="colorSurfaceVariant">#2A2D3E</item>
+        <item name="colorOnSurfaceVariant">#B0B8D0</item>
+
+        <item name="android:colorBackground">#121218</item>
+        <item name="colorOnBackground">#E8EAED</item>
+
+        <item name="colorError">#EF9A9A</item>
+        <item name="colorOnError">#1C1F2A</item>
+
+        <item name="android:statusBarColor">#0D1442</item>
+        <item name="android:navigationBarColor">#121218</item>
+
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.App.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.App.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.App.LargeComponent</item>
+
+        <item name="materialButtonStyle">@style/Widget.App.Button.Primary</item>
+        <item name="textInputStyle">@style/Widget.App.TextInputLayout</item>
+        <item name="materialCardViewStyle">@style/Widget.App.Card</item>
     </style>
+
+    <style name="Theme._24012011180_VRAJ_SONI_MAD_ASSIGNMENT_PROJECT"
+        parent="Base.Theme._24012011180_VRAJ_SONI_MAD_ASSIGNMENT_PROJECT" />
+
 </resources>

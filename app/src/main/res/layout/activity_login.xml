@@ -1,118 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+    LOGIN SCREEN
+    Soft background, white rounded card wrapping all fields and buttons.
+    ScrollView so it works on small screens and in landscape.
+    IDs preserved: main, imageContainer_activity_login, main_logo,
+                   greetings, digitalId, EmailAddField, EmailInputField,
+                   PasswordField, PasswordInputField, login_activity_loginBtn,
+                   question, login_activity_signUpBtn
+-->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:fillViewport="true"
+    android:scrollbars="none"
     tools:context=".LoginActivity">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/imageContainer_activity_login"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="20dp"
-        app:cardCornerRadius="16dp"
-        android:layout_marginTop="70dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:paddingBottom="32dp">
 
-        <ImageView
-            android:id="@+id/main_logo"
+        <!-- ── NAVY HEADER BAND ── -->
+        <View
+            android:id="@+id/loginHeaderBand"
+            android:layout_width="0dp"
+            android:layout_height="220dp"
+            android:background="@drawable/bg_splash_gradient"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Logo in header -->
+        <FrameLayout
+            android:id="@+id/imageContainer_activity_login"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:background="@drawable/bg_logo_circle"
+            android:padding="12dp"
+            android:layout_marginTop="44dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/main_logo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"
+                android:contentDescription="@string/cd_app_logo"
+                app:srcCompat="@drawable/digital_id_logo" />
+
+        </FrameLayout>
+
+        <!-- "WELCOME TO:" label in header -->
+        <TextView
+            android:id="@+id/greetings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/digital_id_logo"/>
+            android:text="@string/lbl_welcome"
+            android:textSize="14sp"
+            android:textColor="@color/colorWhite30"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="0.1"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageContainer_activity_login" />
 
-    </com.google.android.material.card.MaterialCardView>
-
-    <TextView
-        android:id="@+id/greetings"
-        android:layout_width="270dp"
-        android:layout_height="wrap_content"
-        android:text="WELCOME TO:"
-        android:layout_marginTop="70dp"
-        android:textSize="20sp"
-        android:textAlignment="center"
-        android:textFontWeight="400"
-        android:fontFamily="monospace"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageContainer_activity_login"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <TextView
-        android:id="@+id/digitalId"
-        android:layout_width="270dp"
-        android:layout_height="wrap_content"
-        android:text="DIGITAL ID"
-        android:textSize="40sp"
-        android:textAlignment="center"
-        android:textFontWeight="400"
-        android:fontFamily="monospace"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/greetings"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/EmailAddField"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:hint="Email Address"
-        android:layout_marginTop="50dp"
-        app:layout_constraintStart_toStartOf="@id/digitalId"
-        app:layout_constraintTop_toBottomOf="@id/digitalId"
-        app:layout_constraintEnd_toEndOf="@id/digitalId">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/EmailInputField"
-            android:layout_width="match_parent"
+        <!-- "DIGITAL ID" in header -->
+        <TextView
+            android:id="@+id/digitalId"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:text="@string/lbl_digital_id"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorOnPrimary"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="0.1"
+            android:layout_marginTop="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/greetings" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/PasswordField"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        android:layout_marginTop="50dp"
-        app:layout_constraintStart_toStartOf="@id/EmailAddField"
-        app:layout_constraintTop_toBottomOf="@id/EmailAddField"
-        app:layout_constraintEnd_toEndOf="@id/EmailAddField">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/PasswordInputField"
-            android:layout_width="match_parent"
+        <!-- ── WHITE CARD ── -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/loginCard"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="-24dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="6dp"
+            app:cardBackgroundColor="@color/colorSurface"
+            app:layout_constraintTop_toBottomOf="@id/loginHeaderBand"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-    <Button
-        android:id="@+id/login_activity_loginBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:layout_marginTop="50dp"
-        app:layout_constraintStart_toStartOf="@id/PasswordField"
-        app:layout_constraintTop_toBottomOf="@id/PasswordField"
-        app:layout_constraintEnd_toEndOf="@id/PasswordField"/>
-    <TextView
-        android:id="@+id/question"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Don't have an Account?"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="@id/login_activity_loginBtn"
-        app:layout_constraintTop_toBottomOf="@id/login_activity_loginBtn"
-        app:layout_constraintEnd_toEndOf="@id/login_activity_loginBtn"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
 
-    <Button
-        android:id="@+id/login_activity_signUpBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SignUp"
-        app:layout_constraintStart_toStartOf="@id/question"
-        app:layout_constraintTop_toBottomOf="@id/question"
-        app:layout_constraintEnd_toEndOf="@id/question"/>
+                <!-- Sign In heading inside card -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sign In"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorTextPrimary"
+                    android:fontFamily="sans-serif"
+                    android:layout_marginBottom="20dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <!-- Email field -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/EmailAddField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_email"
+                    app:startIconDrawable="@drawable/ic_email"
+                    app:startIconTint="@color/colorPrimary"
+                    style="@style/Widget.App.TextInputLayout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/EmailInputField"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/colorTextPrimary" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Password field -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/PasswordField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_password"
+                    android:layout_marginTop="14dp"
+                    app:startIconDrawable="@drawable/ic_lock"
+                    app:startIconTint="@color/colorPrimary"
+                    app:passwordToggleEnabled="true"
+                    style="@style/Widget.App.TextInputLayout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/PasswordInputField"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:textColor="@color/colorTextPrimary" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Login button — filled, full width -->
+                <Button
+                    android:id="@+id/login_activity_loginBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_login"
+                    android:layout_marginTop="24dp"
+                    style="@style/Widget.App.Button.Primary" />
+
+                <!-- "Don't have an account?" -->
+                <TextView
+                    android:id="@+id/question"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/q_no_account"
+                    android:textSize="13sp"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textAlignment="center"
+                    android:layout_marginTop="16dp" />
+
+                <!-- Sign Up text button -->
+                <Button
+                    android:id="@+id/login_activity_signUpBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_signup"
+                    style="@style/Widget.App.Button.Text" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

@@ -1,9 +1,184 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme._24012011180_VRAJ_SONI_MAD_ASSIGNMENT_PROJECT" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+    <!-- ─────────────────────────────────────────
+         Base theme (light)
+         ───────────────────────────────────────── -->
+    <style name="Base.Theme._24012011180_VRAJ_SONI_MAD_ASSIGNMENT_PROJECT"
+        parent="Theme.Material3.DayNight.NoActionBar">
+
+        <!-- M3 color roles mapped to our design system -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="colorPrimaryContainer">@color/colorSurfaceVariant</item>
+        <item name="colorOnPrimaryContainer">@color/colorPrimary</item>
+
+        <item name="colorSecondary">@color/colorAccent</item>
+        <item name="colorOnSecondary">@color/colorOnAccent</item>
+        <item name="colorSecondaryContainer">@color/colorWarningLight</item>
+        <item name="colorOnSecondaryContainer">@color/colorWarning</item>
+
+        <item name="colorTertiary">@color/colorSuccess</item>
+        <item name="colorOnTertiary">@color/white</item>
+
+        <item name="colorSurface">@color/colorSurface</item>
+        <item name="colorOnSurface">@color/colorTextPrimary</item>
+        <item name="colorSurfaceVariant">@color/colorSurfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/colorTextSecondary</item>
+
+        <item name="android:colorBackground">@color/colorBackground</item>
+        <item name="colorOnBackground">@color/colorTextPrimary</item>
+
+        <item name="colorError">@color/colorError</item>
+        <item name="colorOnError">@color/white</item>
+
+        <!-- Typography -->
+        <item name="android:fontFamily">sans-serif</item>
+
+        <!-- Status bar color matches primary -->
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <item name="android:navigationBarColor">@color/colorBackground</item>
+
+        <!-- Shape overrides: corner radius 12dp for components -->
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.App.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.App.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.App.LargeComponent</item>
+
+        <!-- Default button style -->
+        <item name="materialButtonStyle">@style/Widget.App.Button.Primary</item>
+
+        <!-- TextInputLayout default style -->
+        <item name="textInputStyle">@style/Widget.App.TextInputLayout</item>
+
+        <!-- Card default style -->
+        <item name="materialCardViewStyle">@style/Widget.App.Card</item>
     </style>
 
-    <style name="Theme._24012011180_VRAJ_SONI_MAD_ASSIGNMENT_PROJECT" parent="Base.Theme._24012011180_VRAJ_SONI_MAD_ASSIGNMENT_PROJECT" />
+    <style name="Theme._24012011180_VRAJ_SONI_MAD_ASSIGNMENT_PROJECT"
+        parent="Base.Theme._24012011180_VRAJ_SONI_MAD_ASSIGNMENT_PROJECT" />
+
+    <!-- ─────────────────────────────────────────
+         Shape appearances
+         ───────────────────────────────────────── -->
+    <style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="ShapeAppearance.App.LargeComponent" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerSize">20dp</item>
+    </style>
+
+    <!-- ─────────────────────────────────────────
+         Button styles
+         ───────────────────────────────────────── -->
+
+    <!-- Filled primary button -->
+    <style name="Widget.App.Button.Primary" parent="Widget.Material3.Button">
+        <item name="android:minHeight">52dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:letterSpacing">0.05</item>
+        <item name="android:textStyle">bold</item>
+        <item name="cornerRadius">12dp</item>
+    </style>
+
+    <!-- Outlined button -->
+    <style name="Widget.App.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:minHeight">52dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:letterSpacing">0.05</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="strokeColor">@color/colorPrimary</item>
+    </style>
+
+    <!-- Text-only button (for "Already have account?" links) -->
+    <style name="Widget.App.Button.Text" parent="Widget.Material3.Button.TextButton">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+
+    <!-- ─────────────────────────────────────────
+         TextInputLayout style
+         ───────────────────────────────────────── -->
+    <style name="Widget.App.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">12dp</item>
+        <item name="boxCornerRadiusTopEnd">12dp</item>
+        <item name="boxCornerRadiusBottomStart">12dp</item>
+        <item name="boxCornerRadiusBottomEnd">12dp</item>
+        <item name="boxStrokeColor">@color/colorPrimary</item>
+        <item name="hintTextColor">@color/colorPrimary</item>
+        <item name="android:textColorHint">@color/colorTextHint</item>
+    </style>
+
+    <!-- ─────────────────────────────────────────
+         Card style
+         ───────────────────────────────────────── -->
+    <style name="Widget.App.Card" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">4dp</item>
+        <item name="cardBackgroundColor">@color/colorSurface</item>
+        <item name="strokeColor">@color/colorCardStroke</item>
+        <item name="strokeWidth">0dp</item>
+    </style>
+
+    <!-- Tappable card (for Admin dashboard) -->
+    <style name="Widget.App.Card.Tappable" parent="Widget.App.Card">
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="rippleColor">@color/colorSurfaceVariant</item>
+    </style>
+
+    <!-- ID card (portrait card with larger corners) -->
+    <style name="Widget.App.Card.IDCard" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardElevation">8dp</item>
+        <item name="cardBackgroundColor">@color/colorSurface</item>
+    </style>
+
+    <!-- ─────────────────────────────────────────
+         Typography styles
+         ───────────────────────────────────────── -->
+    <style name="TextAppearance.App.Title" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="android:textSize">26sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+
+    <style name="TextAppearance.App.Title.OnPrimary" parent="TextAppearance.App.Title">
+        <item name="android:textColor">@color/colorOnPrimary</item>
+    </style>
+
+    <style name="TextAppearance.App.Heading" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+
+    <style name="TextAppearance.App.Body" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+
+    <style name="TextAppearance.App.Body.Secondary" parent="TextAppearance.App.Body">
+        <item name="android:textColor">@color/colorTextSecondary</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="TextAppearance.App.Caption" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/colorTextSecondary</item>
+    </style>
+
+    <!-- ─────────────────────────────────────────
+         Activity-level window settings
+         ───────────────────────────────────────── -->
+    <style name="Theme.App.AddDigitalId"
+        parent="Theme._24012011180_VRAJ_SONI_MAD_ASSIGNMENT_PROJECT">
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
 </resources>

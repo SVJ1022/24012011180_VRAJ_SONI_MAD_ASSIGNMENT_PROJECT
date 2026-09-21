@@ -18,9 +18,7 @@ import java.io.File
 import java.io.FileOutputStream
 
 class AddDigitalIDActivity : AppCompatActivity() {
-    val userId = intent.getIntExtra("userId", -1)
-    val dbHelper = DatabaseHelper(this)
-    val user = dbHelper.getUserById(userId)
+
     private var photoPath: String = ""
     private lateinit var photo: ImageView
     private val imagePicker =
@@ -61,6 +59,10 @@ class AddDigitalIDActivity : AppCompatActivity() {
 
             insets
         }
+
+        val userId = intent.getIntExtra("userId", -1)
+        val dbHelper = DatabaseHelper(this)
+        val user = dbHelper.getUserById(userId)
 
         findViewById<TextView>(R.id.StudentName).text = user?.fullName
 
@@ -159,24 +161,6 @@ class AddDigitalIDActivity : AppCompatActivity() {
         findViewById<Button>(R.id.backBtn).setOnClickListener {
             finish()
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        val studentList: Array<StudentListItem> = dbHelper.getAllStudents()
-
-        val recyclerView = findViewById<RecyclerView>(R.id.ListedStudents)
-
-        val adapter = StudentAdapter(studentList) { student ->
-
-            val intent = Intent(this, AddDigitalIDActivity::class.java)
-
-            intent.putExtra("userId", student.id)
-
-            startActivity(intent)
-        }
-
-        recyclerView.adapter = adapter
     }
 
     private fun saveImageToInternalStorage(uri: Uri): String {

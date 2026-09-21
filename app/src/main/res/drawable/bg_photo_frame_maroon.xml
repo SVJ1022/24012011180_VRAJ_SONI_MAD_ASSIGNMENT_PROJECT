@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Photo frame for the ID card photo: rounded rectangle (8dp corners),
+    white fill, 3dp maroon stroke.  Matches Ganpat University card style.
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/colorSurface" />
+    <corners android:radius="8dp" />
+    <stroke
+        android:width="3dp"
+        android:color="@color/colorMaroonMid" />
+</shape>

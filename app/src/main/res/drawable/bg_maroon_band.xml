@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Left vertical band for the Ganpat University ID card.
+    Maroon gradient top-to-bottom, rounded on left corners (20dp to match
+    the card's own corner radius), square on the right edge.
+    Used as the background of the left band View inside the card.
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:startColor="@color/colorMaroon"
+        android:endColor="@color/colorMaroonLight"
+        android:angle="270"
+        android:type="linear" />
+    <corners
+        android:topLeftRadius="20dp"
+        android:bottomLeftRadius="20dp"
+        android:topRightRadius="0dp"
+        android:bottomRightRadius="0dp" />
+</shape>

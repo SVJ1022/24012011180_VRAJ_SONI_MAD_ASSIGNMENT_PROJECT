@@ -1,293 +1,555 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<!--
+  DIGITAL ID CARD — Ganpat University style (v3)
+  ================================================
+  Changes in this version:
+    C1. Table labels: trailing colon removed from lbl_* strings (in strings.xml),
+        label column now has a fixed width (56dp) so all values align cleanly.
+    C2. Maroon left band: 3 small guni_vector logos top + 3 bottom (28dp wide,
+        white tint), with the rotated "STUDENT" text centred between them,
+        all in a vertical LinearLayout so nothing clips on small screens.
+
+  ID inventory — ALL original IDs still present:
+    IN USE: main, AppName, ID_Holder, IdOrganization,
+            UniversityLogo, studentImage, studentName, enrollmentNo,
+            studentDetailsTable,
+            collegeLabel, collegeValue,
+            degreeLabel,  degreeValue,
+            bGroupLabel,  bGroupValue,
+            mobileLabel,  mobileValue,
+            validityLabel,validityValue,
+            backBtn, imgBarcode
+    GONE (IDs kept):  studentStrip, studentStripText
+-->
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorIDCardScreenBg"
+    android:fillViewport="true"
+    android:scrollbars="none"
     tools:context=".DigitalIDActivity">
 
-    <!-- APP TITLE -->
-
-    <TextView
-        android:id="@+id/AppName"
-        android:layout_width="wrap_content"
+    <!--
+      Root ConstraintLayout keeps id="main" for the existing
+      ViewCompat.setOnApplyWindowInsetsListener call in DigitalIDActivity.kt.
+    -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Digital ID"
-        android:layout_marginTop="100dp"
-        android:textSize="32sp"
-        android:fontFamily="monospace"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:paddingBottom="24dp">
 
+        <!-- ── SCREEN TITLE ── -->
+        <TextView
+            android:id="@+id/AppName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_digital_id_title"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorTextPrimary"
+            android:fontFamily="sans-serif"
+            android:layout_marginTop="52dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- DIGITAL ID CARD -->
+        <!-- ══════════════════════════════════════════════════════════════════
+             THE ID CARD
+             ══════════════════════════════════════════════════════════════════ -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/ID_Holder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginTop="14dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="6dp"
+            app:cardBackgroundColor="@color/colorSurface"
+            app:layout_constraintTop_toBottomOf="@id/AppName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/ID_Holder"
-        android:layout_width="350dp"
-        android:layout_height="500dp"
-        android:layout_marginTop="25dp"
-        android:elevation="20dp"
-        app:cardCornerRadius="8dp"
-        app:cardUseCompatPadding="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/AppName"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/IdOrganization"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-
-            <!-- RED LEFT STRIP -->
-
-            <View
-                android:id="@+id/studentStrip"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:background="#C41E3A"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
-
-
-            <!-- STUDENT TEXT -->
-
-            <TextView
-                android:id="@+id/studentStripText"
-                android:layout_width="wrap_content"
+            <!--
+              Inner ConstraintLayout: left 17% = maroon band, right 83% = content.
+            -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/IdOrganization"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="STUDENT"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:fontFamily="sans-serif"
-                android:rotation="-90"
-                android:letterSpacing="1.5"
-                app:layout_constraintStart_toStartOf="@id/studentStrip"
-                app:layout_constraintTop_toTopOf="@id/studentStrip"
-                app:layout_constraintBottom_toBottomOf="@id/studentStrip"
-                app:layout_constraintEnd_toEndOf="@id/studentStrip" />
+                android:minHeight="1dp">
 
+                <!-- ── HIDDEN LEGACY VIEWS (IDs kept per hard rule) ── -->
+                <View
+                    android:id="@+id/studentStrip"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- UNIVERSITY LOGO -->
+                <TextView
+                    android:id="@+id/studentStripText"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:text="@string/lbl_student"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/UniversityLogo"
-                android:layout_width="170dp"
-                android:layout_height="65dp"
-                android:layout_marginTop="15dp"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/university_logo"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                <!-- ── BAND / CONTENT DIVIDER ── -->
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/bandGuideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.17" />
 
+                <!-- ════════════════════════════════════════════════════════
+                     LEFT MAROON BAND
+                     A vertical LinearLayout fills the band and arranges:
+                       - 3 guni logos at the top
+                       - A spacer with weight=1 (pushes content to edges)
+                       - "STUDENT" rotated text in the middle
+                       - A spacer with weight=1
+                       - 3 guni logos at the bottom
+                     The LinearLayout is constrained start+end to the band
+                     and top+bottom to the card so it always fills height.
+                     ════════════════════════════════════════════════════════ -->
 
-            <!-- STUDENT PHOTO -->
+                <!-- Maroon gradient background (full band height) -->
+                <View
+                    android:id="@+id/maroonBand"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/bg_maroon_band"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/bandGuideline"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
 
-            <ImageView
-                android:id="@+id/studentImage"
-                android:layout_width="105dp"
-                android:layout_height="125dp"
-                android:layout_marginTop="8dp"
-                android:scaleType="centerCrop"
-                app:layout_constraintStart_toStartOf="@id/UniversityLogo"
-                app:layout_constraintTop_toBottomOf="@id/UniversityLogo"
-                app:layout_constraintEnd_toEndOf="@id/UniversityLogo" />
+                <!-- Content of the band as a vertical LinearLayout -->
+                <LinearLayout
+                    android:id="@+id/bandContent"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/bandGuideline"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
 
+                    <!-- Top logo 1 -->
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_marginBottom="4dp"
+                        android:scaleType="fitCenter"
+                        android:contentDescription="@string/cd_guni_logo"
+                        app:srcCompat="@drawable/guni_vector"
+                        app:tint="#FFFFFF" />
 
-            <!-- STUDENT NAME -->
+                    <!-- Top logo 2 -->
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_marginBottom="4dp"
+                        android:scaleType="fitCenter"
+                        android:contentDescription="@string/cd_guni_logo"
+                        app:srcCompat="@drawable/guni_vector"
+                        app:tint="#FFFFFF" />
 
-            <TextView
-                android:id="@+id/studentName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="STUDENT NAME"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="#C41E3A"
-                android:fontFamily="sans-serif"
-                android:textAlignment="center"
-                app:layout_constraintStart_toStartOf="@id/studentImage"
-                app:layout_constraintTop_toBottomOf="@id/studentImage"
-                app:layout_constraintEnd_toEndOf="@id/studentImage" />
+                    <!-- Top logo 3 -->
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:scaleType="fitCenter"
+                        android:contentDescription="@string/cd_guni_logo"
+                        app:srcCompat="@drawable/guni_vector"
+                        app:tint="#FFFFFF" />
 
-
-            <!-- ENROLLMENT NUMBER -->
-
-            <TextView
-                android:id="@+id/enrollmentNo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="T24012011001"
-                android:textSize="18sp"
-                android:textColor="@android:color/black"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/studentName"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-
-            <!-- COLLEGE -->
-
-            <TableLayout
-                android:id="@+id/studentDetailsTable"
-                android:layout_width="280dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:stretchColumns="1"
-                app:layout_constraintStart_toEndOf="@id/studentStrip"
-                app:layout_constraintTop_toBottomOf="@id/enrollmentNo"
-                app:layout_constraintEnd_toEndOf="parent">
-
-                <!-- COLLEGE -->
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/collegeLabel"
-                        android:layout_width="90dp"
-                        android:layout_height="wrap_content"
-                        android:text="College:"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/collegeValue"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="UVPCE"
-                        android:textSize="18sp"
+                    <!-- Flexible spacer pushing STUDENT text to centre -->
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_weight="1" />
 
-                </TableRow>
-
-
-                <!-- DEGREE -->
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
+                    <!-- "STUDENT" rotated -90° reads bottom-to-top -->
                     <TextView
-                        android:id="@+id/degreeLabel"
-                        android:layout_width="90dp"
+                        android:id="@+id/studentBandLabel"
+                        android:layout_width="180dp"
                         android:layout_height="wrap_content"
-                        android:text="Degree:"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:text="@string/lbl_student"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:letterSpacing="0.25"
+                        android:gravity="center"
+                        android:rotation="-90"
+                        android:contentDescription="@string/cd_student_band" />
 
-                    <TextView
-                        android:id="@+id/degreeValue"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="B. Tech. (Computer)"
-                        android:textSize="18sp"
+                    <!-- Flexible spacer below STUDENT text -->
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_weight="1" />
 
-                </TableRow>
+                    <!-- Bottom logo 1 -->
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_marginTop="4dp"
+                        android:scaleType="fitCenter"
+                        android:contentDescription="@string/cd_guni_logo"
+                        app:srcCompat="@drawable/guni_vector"
+                        app:tint="#FFFFFF" />
 
+                    <!-- Bottom logo 2 -->
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_marginTop="4dp"
+                        android:scaleType="fitCenter"
+                        android:contentDescription="@string/cd_guni_logo"
+                        app:srcCompat="@drawable/guni_vector"
+                        app:tint="#FFFFFF" />
 
-                <!-- B.GROUP -->
+                    <!-- Bottom logo 3 -->
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_marginTop="4dp"
+                        android:scaleType="fitCenter"
+                        android:contentDescription="@string/cd_guni_logo"
+                        app:srcCompat="@drawable/guni_vector"
+                        app:tint="#FFFFFF" />
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/bGroupLabel"
-                        android:layout_width="90dp"
+                <!-- ════════════════════════════════════════════════════════
+                     RIGHT CONTENT AREA (right of bandGuideline)
+                     ════════════════════════════════════════════════════════ -->
+
+                <!-- University logo — centered, top -->
+                <ImageView
+                    android:id="@+id/UniversityLogo"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="12dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="@string/cd_university_logo"
+                    app:srcCompat="@drawable/university_logo"
+                    app:layout_constraintStart_toEndOf="@id/bandGuideline"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- Thin maroon rule below logo -->
+                <View
+                    android:id="@+id/logoRule"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:background="@color/colorMaroonMid"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="6dp"
+                    app:layout_constraintStart_toEndOf="@id/bandGuideline"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/UniversityLogo" />
+
+                <!-- Student photo — rounded rect, maroon stroke, centerCrop -->
+                <ImageView
+                    android:id="@+id/studentImage"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/bg_photo_frame_maroon"
+                    android:contentDescription="@string/cd_student_photo"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintDimensionRatio="W,1.08:1"
+                    app:layout_constraintWidth_percent="0.55"
+                    app:layout_constraintStart_toEndOf="@id/bandGuideline"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/logoRule" />
+
+                <!-- Student name — ALL CAPS, maroon, bold -->
+                <TextView
+                    android:id="@+id/studentName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="STUDENT NAME"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorMaroon"
+                    android:fontFamily="sans-serif"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="6dp"
+                    app:layout_constraintStart_toEndOf="@id/bandGuideline"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/studentImage" />
+
+                <!-- Enrollment number — black, centered -->
+                <TextView
+                    android:id="@+id/enrollmentNo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="T24012011001"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="sans-serif"
+                    android:textAlignment="center"
+                    android:letterSpacing="0.06"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="2dp"
+                    app:layout_constraintStart_toEndOf="@id/bandGuideline"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/studentName" />
+
+                <!--
+                  ════════════════════════════════════════════════════════
+                  DETAILS TABLE — 3 columns: [label 56dp] [: 12dp] [value]
+                  Fixed 56dp label column ensures all values start at the
+                  same x-position (fixes the double-colon alignment issue).
+                  ════════════════════════════════════════════════════════
+                -->
+                <TableLayout
+                    android:id="@+id/studentDetailsTable"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:shrinkColumns="2"
+                    android:stretchColumns="2"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toEndOf="@id/bandGuideline"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/enrollmentNo">
+
+                    <!-- ── College ── -->
+                    <TableRow
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="B.Group:"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:gravity="center_vertical"
+                        android:paddingBottom="3dp">
 
-                    <TextView
-                        android:id="@+id/bGroupValue"
-                        android:layout_width="0dp"
+                        <TextView
+                            android:id="@+id/collegeLabel"
+                            android:layout_width="56dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lbl_college"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:fontFamily="sans-serif" />
+
+                        <TextView
+                            android:layout_width="12dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lbl_colon"
+                            android:textSize="12sp"
+                            android:textColor="@color/black"
+                            android:paddingEnd="4dp" />
+
+                        <TextView
+                            android:id="@+id/collegeValue"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="UVPCE"
+                            android:textSize="12sp"
+                            android:textColor="@color/black"
+                            android:layout_weight="1" />
+
+                    </TableRow>
+
+                    <!-- ── Degree (label hidden per spec, value shown bold) ── -->
+                    <TableRow
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text=""
-                        android:textSize="18sp"
-                        android:layout_weight="1" />
+                        android:gravity="center_vertical"
+                        android:paddingBottom="3dp">
 
-                </TableRow>
+                        <TextView
+                            android:id="@+id/degreeLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:text="@string/lbl_degree"
+                            android:visibility="gone" />
 
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:visibility="gone" />
 
-                <!-- MOBILE -->
+                        <TextView
+                            android:id="@+id/degreeValue"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="B. Tech. (Computer)"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_weight="1" />
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    </TableRow>
 
-                    <TextView
-                        android:id="@+id/mobileLabel"
-                        android:layout_width="90dp"
+                    <!-- ── Blood Group ── -->
+                    <TableRow
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Mobile:"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:gravity="center_vertical"
+                        android:paddingBottom="3dp">
 
-                    <TextView
-                        android:id="@+id/mobileValue"
-                        android:layout_width="0dp"
+                        <TextView
+                            android:id="@+id/bGroupLabel"
+                            android:layout_width="56dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lbl_blood_group"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:fontFamily="sans-serif" />
+
+                        <TextView
+                            android:layout_width="12dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lbl_colon"
+                            android:textSize="12sp"
+                            android:textColor="@color/black"
+                            android:paddingEnd="4dp" />
+
+                        <TextView
+                            android:id="@+id/bGroupValue"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textSize="12sp"
+                            android:textColor="@color/black"
+                            android:layout_weight="1" />
+
+                    </TableRow>
+
+                    <!-- ── Mobile ── -->
+                    <TableRow
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="9997007152"
-                        android:textSize="18sp"
-                        android:layout_weight="1" />
+                        android:gravity="center_vertical"
+                        android:paddingBottom="3dp">
 
-                </TableRow>
+                        <TextView
+                            android:id="@+id/mobileLabel"
+                            android:layout_width="56dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lbl_mobile"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:fontFamily="sans-serif" />
 
+                        <TextView
+                            android:layout_width="12dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lbl_colon"
+                            android:textSize="12sp"
+                            android:textColor="@color/black"
+                            android:paddingEnd="4dp" />
 
-                <!-- VALIDITY -->
+                        <TextView
+                            android:id="@+id/mobileValue"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="9997007152"
+                            android:textSize="12sp"
+                            android:textColor="@color/black"
+                            android:layout_weight="1" />
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    </TableRow>
 
-                    <TextView
-                        android:id="@+id/validityLabel"
-                        android:layout_width="90dp"
+                    <!-- ── Validity ── -->
+                    <TableRow
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Validity:"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:gravity="center_vertical">
 
-                    <TextView
-                        android:id="@+id/validityValue"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="04/07/2028"
-                        android:textSize="18sp"
-                        android:layout_weight="1" />
+                        <TextView
+                            android:id="@+id/validityLabel"
+                            android:layout_width="56dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lbl_validity"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:fontFamily="sans-serif" />
 
-                </TableRow>
+                        <TextView
+                            android:layout_width="12dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lbl_colon"
+                            android:textSize="12sp"
+                            android:textColor="@color/black"
+                            android:paddingEnd="4dp" />
 
-            </TableLayout>
+                        <TextView
+                            android:id="@+id/validityValue"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="04/07/2028"
+                            android:textSize="12sp"
+                            android:textColor="@color/black"
+                            android:layout_weight="1" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </TableRow>
 
-    </com.google.android.material.card.MaterialCardView>
+                </TableLayout>
 
+                <!-- ── BARCODE — spans content width, 48dp tall, fitXY ── -->
+                <ImageView
+                    android:id="@+id/imgBarcode"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:scaleType="fitXY"
+                    android:contentDescription="@string/cd_barcode"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="12dp"
+                    app:layout_constraintStart_toEndOf="@id/bandGuideline"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/studentDetailsTable"
+                    app:layout_constraintBottom_toBottomOf="parent" />
 
-    <!-- BACK BUTTON -->
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/backBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="BACK"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ID_Holder"
-        app:layout_constraintEnd_toEndOf="parent" />
+        </com.google.android.material.card.MaterialCardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- ── BACK BUTTON ── -->
+        <Button
+            android:id="@+id/backBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_back"
+            android:layout_marginStart="28dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginTop="18dp"
+            style="@style/Widget.App.Button.Outlined"
+            app:layout_constraintTop_toBottomOf="@id/ID_Holder"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

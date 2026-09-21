@@ -1,61 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+    STUDENT LIST ITEM — richer row for "Manage Digital IDs" screen.
+
+    IDs preserved (all still bound in StudentAdapter.StudentViewHolder):
+      studentName   — student's full name
+      enrollmentNo  — enrollment number
+      batch         — repurposed: shows "College · Degree" or "Not assigned yet"
+      idStatus      — green/orange status chip
+      avatarInitial — navy circle with first-letter initial (hidden when photo shown)
+
+    New IDs (null-safe in adapter):
+      avatarPhoto       — ImageView layered over avatarInitial, shows real photo
+      tvBgroupValidity  — 3rd detail line: "B.Grp: O+  ·  Valid till 04/2028"
+-->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_marginStart="12dp"
+    android:layout_marginEnd="12dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@color/colorSurface"
+    app:rippleColor="@color/colorSurfaceVariant">
 
-    <TextView
-        android:id="@+id/studentName"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="studentName"
-        android:textSize="13sp"
-        android:padding="5dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/enrollmentNo"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_weight="2"/>
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="12dp">
 
-    <TextView
-        android:id="@+id/enrollmentNo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="enrollmentNo"
-        android:textSize="13sp"
-        android:padding="5dp"
-        app:layout_constraintStart_toEndOf="@id/studentName"
-        app:layout_constraintEnd_toStartOf="@id/batch"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_weight="3"/>
+        <!-- ── AVATAR CONTAINER ─────────────────────────────────────────── -->
+        <!-- FrameLayout lets the photo ImageView overlay the initial TextView -->
+        <FrameLayout
+            android:layout_width="52dp"
+            android:layout_height="52dp">
 
-    <TextView
-        android:id="@+id/batch"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="batch"
-        android:textSize="13sp"
-        android:padding="5dp"
-        android:textAlignment="center"
-        app:layout_constraintStart_toEndOf="@id/enrollmentNo"
-        app:layout_constraintEnd_toStartOf="@id/idStatus"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_weight="2"/>
+            <!-- Navy circle with initial letter (original id preserved) -->
+            <TextView
+                android:id="@+id/avatarInitial"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:background="@drawable/bg_avatar_circle"
+                android:gravity="center"
+                android:text="S"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorOnPrimary"
+                android:fontFamily="sans-serif" />
 
-    <TextView
-        android:id="@+id/idStatus"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="idStatus"
-        android:textSize="13sp"
-        android:padding="5dp"
-        android:textAlignment="center"
-        app:layout_constraintStart_toEndOf="@id/batch"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_weight="2"/>
+            <!-- Real photo overlaid on top; hidden when no photo exists -->
+            <ImageView
+                android:id="@+id/avatarPhoto"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:scaleType="centerCrop"
+                android:background="@drawable/bg_avatar_circle"
+                android:visibility="gone"
+                android:contentDescription="@string/cd_student_photo" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
+
+        <!-- ── NAME + 3 DETAIL LINES ────────────────────────────────────── -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="12dp">
+
+            <!-- Student name — bold -->
+            <TextView
+                android:id="@+id/studentName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Student Name"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorTextPrimary"
+                android:fontFamily="sans-serif"
+                android:ellipsize="end"
+                android:maxLines="1" />
+
+            <!-- Enrollment number — muted (original id) -->
+            <TextView
+                android:id="@+id/enrollmentNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enrollment No."
+                android:textSize="12sp"
+                android:textColor="@color/colorTextSecondary"
+                android:layout_marginTop="2dp" />
+
+            <!-- College · Degree line (original id: batch — repurposed text) -->
+            <TextView
+                android:id="@+id/batch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="College · Degree"
+                android:textSize="12sp"
+                android:textColor="@color/colorTextSecondary"
+                android:layout_marginTop="1dp"
+                android:ellipsize="end"
+                android:maxLines="1" />
+
+            <!-- Blood Group · Valid till line (new, optional) -->
+            <TextView
+                android:id="@+id/tvBgroupValidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="11sp"
+                android:textColor="@color/colorTextSecondary"
+                android:layout_marginTop="1dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <!-- ── STATUS CHIP ──────────────────────────────────────────────── -->
+        <TextView
+            android:id="@+id/idStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/status_pending"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorWarning"
+            android:background="@drawable/bg_chip_warning"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

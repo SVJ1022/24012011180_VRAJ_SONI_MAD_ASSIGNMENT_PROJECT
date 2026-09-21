@@ -1,91 +1,222 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+    ADMIN DASHBOARD
+    Navy header, two large tappable cards (Student Management, Digital IDs),
+    Manage Students button, Logout text button.
+    IDs preserved: main, AdminDashboardText, MaterialCardAdmin,
+                   AppLogo, AppName, ViewID,
+                   ManageStudentBtn, LogoutBtnAdmin
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context=".AdminDashboardActivity">
 
+    <!-- ── NAVY HEADER ── -->
+    <View
+        android:id="@+id/adminHeaderBand"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:background="@drawable/bg_splash_gradient"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- "Admin Dashboard" title in header -->
     <TextView
         android:id="@+id/AdminDashboardText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Admin Dashboard"
-        android:layout_marginTop="200dp"
-        android:textSize="35sp"
-        android:fontFamily="monospace"
+        android:text="@string/lbl_admin_dashboard"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorOnPrimary"
+        android:fontFamily="sans-serif"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Subtitle in header -->
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_admin_subtitle"
+        android:textSize="13sp"
+        android:textColor="@color/colorWhite30"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/AdminDashboardText" />
+
+    <!-- ── CARD 1: STUDENT MANAGEMENT ── -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/MaterialCardAdmin"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:elevation="20dp"
-        style="?attr/materialCardViewElevatedStyle"
-        app:layout_constraintStart_toStartOf="@id/AdminDashboardText"
-        app:layout_constraintTop_toBottomOf="@id/AdminDashboardText"
-        app:layout_constraintEnd_toEndOf="@id/AdminDashboardText">
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="-24dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="6dp"
+        app:cardBackgroundColor="@color/colorSurface"
+        app:layout_constraintTop_toBottomOf="@id/adminHeaderBand"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp">
+            android:padding="20dp">
 
+            <!-- Icon -->
             <ImageView
                 android:id="@+id/AppLogo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/digital_id_logo"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:background="@drawable/bg_avatar_circle"
+                android:padding="12dp"
+                android:contentDescription="@string/lbl_student_mgmt"
+                app:srcCompat="@drawable/ic_people"
+                app:tint="@color/colorOnPrimary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintBottom_toBottomOf="parent" />
 
+            <!-- Heading -->
             <TextView
                 android:id="@+id/AppName"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="STUDENT MANAGEMENT"
-                android:fontFamily="monospace"
-                android:textSize="25sp"
-                app:layout_constraintStart_toStartOf="@id/AppLogo"
-                app:layout_constraintTop_toBottomOf="@id/AppLogo"
-                app:layout_constraintEnd_toEndOf="@id/AppLogo"/>
+                android:text="@string/lbl_student_mgmt"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorTextPrimary"
+                android:fontFamily="sans-serif"
+                android:layout_marginStart="16dp"
+                app:layout_constraintStart_toEndOf="@id/AppLogo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/AppLogo" />
 
+            <!-- Description -->
             <TextView
                 android:id="@+id/ViewID"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Manage Student Digital IDs"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="@id/AppName"
-                app:layout_constraintTop_toBottomOf="@id/AppName"
-                app:layout_constraintEnd_toEndOf="@id/AppName"/>
+                android:text="@string/lbl_student_mgmt_desc"
+                android:textSize="13sp"
+                android:textColor="@color/colorTextSecondary"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toEndOf="@id/AppLogo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/AppName" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
+    <!-- ── CARD 2: DIGITAL IDs ── -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/digitalIdCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="@color/colorSurface"
+        app:rippleColor="@color/colorSurfaceVariant"
+        app:layout_constraintTop_toBottomOf="@id/MaterialCardAdmin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="20dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:background="@drawable/bg_avatar_circle"
+                android:padding="12dp"
+                android:contentDescription="@string/lbl_digital_ids"
+                app:srcCompat="@drawable/ic_id_card"
+                app:tint="@color/colorOnPrimary" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lbl_digital_ids"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorTextPrimary"
+                    android:fontFamily="sans-serif" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lbl_digital_ids_desc"
+                    android:textSize="13sp"
+                    android:textColor="@color/colorTextSecondary"
+                    android:layout_marginTop="4dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- ── MANAGE STUDENTS BUTTON: kept (id required), hidden ── -->
     <Button
         android:id="@+id/ManageStudentBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Manage Students"
-        android:layout_marginTop="30dp"
-        app:layout_constraintStart_toStartOf="@id/MaterialCardAdmin"
-        app:layout_constraintTop_toBottomOf="@id/MaterialCardAdmin"
-        app:layout_constraintEnd_toEndOf="@id/MaterialCardAdmin"/>
+        android:text="@string/btn_manage_students"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        style="@style/Widget.App.Button.Primary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/digitalIdCard" />
 
+    <!-- ── LOGOUT (text button, bottom) ── -->
     <Button
         android:id="@+id/LogoutBtnAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Logout"
-        app:layout_constraintStart_toStartOf="@id/ManageStudentBtn"
-        app:layout_constraintTop_toBottomOf="@id/ManageStudentBtn"
-        app:layout_constraintEnd_toEndOf="@id/ManageStudentBtn"/>
+        android:text="@string/btn_logout"
+        android:drawableStart="@drawable/ic_logout"
+        style="@style/Widget.App.Button.Text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

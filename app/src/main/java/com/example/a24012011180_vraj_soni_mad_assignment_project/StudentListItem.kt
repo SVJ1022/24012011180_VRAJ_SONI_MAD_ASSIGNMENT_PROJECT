@@ -5,6 +5,11 @@ class StudentListItem(
     var fullName: String,
     var batch: String,
     var enrollmentNo: String,
-    var idStatus: String
-) {
-}
+    var idStatus: String,
+    // Extended fields from LEFT JOIN with digital_id
+    var college: String = "",
+    var degree: String = "",
+    var bloodGroup: String = "",
+    var validity: String = "",
+    var photoPath: String = ""
+)

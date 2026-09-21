@@ -1,56 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+    SPLASH SCREEN
+    Navy gradient background, centered logo in a semi-transparent circle,
+    app name in white bold, tagline in white regular.
+    IDs preserved: main, imageContainer, main_logo, appName, splashText
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_splash_gradient"
     tools:context=".SplashActivity">
 
-    <com.google.android.material.card.MaterialCardView
+    <!-- Logo container: semi-transparent circle on navy background -->
+    <FrameLayout
         android:id="@+id/imageContainer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="20dp"
-        app:cardCornerRadius="16dp"
-        android:layout_marginTop="70dp"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:background="@drawable/bg_logo_circle"
+        android:padding="20dp"
+        android:layout_marginBottom="80dp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <ImageView
             android:id="@+id/main_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/digital_id_logo"/>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/cd_app_logo"
+            app:srcCompat="@drawable/digital_id_logo" />
 
-    </com.google.android.material.card.MaterialCardView>
+    </FrameLayout>
 
+    <!-- App name: large white bold below logo -->
     <TextView
         android:id="@+id/appName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DIGITAL ID"
-        android:textSize="30sp"
-        android:layout_marginTop="70dp"
-        android:textColor="@color/black"
+        android:text="@string/lbl_digital_id"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorOnPrimary"
+        android:fontFamily="sans-serif"
+        android:letterSpacing="0.15"
+        android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageContainer"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageContainer" />
 
+    <!-- Tagline: white muted below app name -->
     <TextView
         android:id="@+id/splashText"
-        android:textAlignment="center"
-        android:layout_width="250dp"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:textSize="25sp"
-        android:text="Digital Identity Management System"
-        android:textColor="@color/black"
+        android:text="@string/app_tagline"
+        android:textSize="15sp"
+        android:textColor="@color/colorWhite30"
+        android:textAlignment="center"
+        android:fontFamily="sans-serif"
+        android:lineSpacingMultiplier="1.4"
+        android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appName"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

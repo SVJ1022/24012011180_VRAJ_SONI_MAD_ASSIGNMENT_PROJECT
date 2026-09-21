@@ -25,7 +25,7 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DB_NAME, null,
                 "$KEY_COLLEGE TEXT," +
                 "$KEY_DEGREE TEXT," +
                 "$KEY_BGROUP TEXT," +
-                "$KEY_VALIDITY TEXT" +
+                "$KEY_VALIDITY TEXT," +
                 "$KEY_PHOTO TEXT" +
                 ");"
 
@@ -256,40 +256,41 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DB_NAME, null,
         val db = readableDatabase
 
         val query = """
-        SELECT 
+        SELECT
             users.id,
             users.fullName,
             users.batch,
-            digital_id.enrollmentNo,
+            COALESCE(digital_id.enrollmentNo, '-')  AS enrollmentNo,
+            COALESCE(digital_id.college, '')         AS college,
+            COALESCE(digital_id.degree, '')          AS degree,
+            COALESCE(digital_id.bGroup, '')          AS bGroup,
+            COALESCE(digital_id.validity, '')        AS validity,
+            COALESCE(digital_id.photo, '')           AS photo,
             CASE
                 WHEN digital_id.userId IS NULL THEN 'Not Assigned'
                 ELSE 'Assigned'
             END AS idStatus
         FROM users
-        LEFT JOIN digital_id
-        ON users.id = digital_id.userId
+        LEFT JOIN digital_id ON users.id = digital_id.userId
         WHERE users.role = ?
+        ORDER BY users.fullName COLLATE NOCASE
     """
 
-        val cursor = db.rawQuery(
-            query,
-            arrayOf("STUDENT")
-        )
+        val cursor = db.rawQuery(query, arrayOf("STUDENT"))
 
         while (cursor.moveToNext()) {
-
             val student = StudentListItem(
-                cursor.getInt(cursor.getColumnIndexOrThrow("id")),
-                cursor.getString(cursor.getColumnIndexOrThrow("fullName")),
-                cursor.getString(cursor.getColumnIndexOrThrow("batch")),
-                cursor.getString(
-                    cursor.getColumnIndexOrThrow("enrollmentNo")
-                ) ?: "-",
-                cursor.getString(
-                    cursor.getColumnIndexOrThrow("idStatus")
-                )
+                id           = cursor.getInt(cursor.getColumnIndexOrThrow("id")),
+                fullName     = cursor.getString(cursor.getColumnIndexOrThrow("fullName")),
+                batch        = cursor.getString(cursor.getColumnIndexOrThrow("batch")),
+                enrollmentNo = cursor.getString(cursor.getColumnIndexOrThrow("enrollmentNo")),
+                idStatus     = cursor.getString(cursor.getColumnIndexOrThrow("idStatus")),
+                college      = cursor.getString(cursor.getColumnIndexOrThrow("college")),
+                degree       = cursor.getString(cursor.getColumnIndexOrThrow("degree")),
+                bloodGroup   = cursor.getString(cursor.getColumnIndexOrThrow("bGroup")),
+                validity     = cursor.getString(cursor.getColumnIndexOrThrow("validity")),
+                photoPath    = cursor.getString(cursor.getColumnIndexOrThrow("photo"))
             )
-
             studentList.add(student)
         }
 
@@ -297,6 +298,13 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DB_NAME, null,
         db.close()
 
         return studentList.toTypedArray()
+    }
+
+    /** Delete the digital_id row for the given user (no schema change). */
+    fun deleteDigitalID(userId: Int) {
+        val db = this.writableDatabase
+        db.delete(TABLE_DIGITAL_ID, "$KEY_USER_ID=?", arrayOf(userId.toString()))
+        db.close()
     }
 
     fun getUserById(userId: Int): User? {
@@ -373,4 +381,100 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DB_NAME, null,
         db.close()
     }
 
-}
+    // ══════════════════════════════════════════════════════
+    // User Management — new methods for UserManagementActivity
+    // ══════════════════════════════════════════════════════
+
+    /** Return all users ordered by name (no passwords leaked — included for admin form pre-fill). */
+    fun getAllUsers(): List<User> {
+        val list = mutableListOf<User>()
+        val db = readableDatabase
+        val cursor = db.query(
+            TABLE_USER,
+            arrayOf(KEY_ID, KEY_FULL_NAME, KEY_EMAIL, KEY_PHONE, KEY_BATCH, KEY_PASSWORD, KEY_ROLE),
+            null, null, null, null,
+            "$KEY_FULL_NAME COLLATE NOCASE"
+        )
+        while (cursor.moveToNext()) {
+            list.add(
+                User(
+                    Id       = cursor.getInt(cursor.getColumnIndexOrThrow(KEY_ID)),
+                    fullName = cursor.getString(cursor.getColumnIndexOrThrow(KEY_FULL_NAME)),
+                    email    = cursor.getString(cursor.getColumnIndexOrThrow(KEY_EMAIL)),
+                    phone    = cursor.getString(cursor.getColumnIndexOrThrow(KEY_PHONE)),
+                    batch    = cursor.getString(cursor.getColumnIndexOrThrow(KEY_BATCH)),
+                    password = cursor.getString(cursor.getColumnIndexOrThrow(KEY_PASSWORD)),
+                    role     = cursor.getString(cursor.getColumnIndexOrThrow(KEY_ROLE))
+                )
+            )
+        }
+        cursor.close()
+        db.close()
+        return list
+    }
+
+    /** Update an existing user's fields. If newPassword is blank, keep the old one. */
+    fun updateUser(user: User) {
+        val db = this.writableDatabase
+        val values = ContentValues()
+        values.put(KEY_FULL_NAME, user.fullName)
+        values.put(KEY_EMAIL, user.email)
+        values.put(KEY_PHONE, user.phone)
+        values.put(KEY_BATCH, user.batch)
+        values.put(KEY_ROLE, user.role)
+        if (user.password.isNotEmpty()) {
+            values.put(KEY_PASSWORD, user.password)
+        }
+        db.update(TABLE_USER, values, "$KEY_ID=?", arrayOf(user.Id.toString()))
+        db.close()
+    }
+
+    /**
+     * Delete a user and cascade: remove their digital_id row and return the stored
+     * photo path (so the caller can delete the file).
+     */
+    fun deleteUserById(userId: Int): String {
+        val db = this.writableDatabase
+        // Fetch photo path before deleting
+        var photoPath = ""
+        val c = db.query(TABLE_DIGITAL_ID, arrayOf(KEY_PHOTO), "$KEY_USER_ID=?",
+            arrayOf(userId.toString()), null, null, null)
+        if (c.moveToFirst()) photoPath = c.getString(c.getColumnIndexOrThrow(KEY_PHOTO)) ?: ""
+        c.close()
+        db.delete(TABLE_DIGITAL_ID, "$KEY_USER_ID=?", arrayOf(userId.toString()))
+        db.delete(TABLE_USER, "$KEY_ID=?", arrayOf(userId.toString()))
+        db.close()
+        return photoPath
+    }
+
+    /**
+     * Returns true if the given email already exists, optionally excluding a user
+     * (used for edit: excludeId = user being edited, so their own email is allowed).
+     */
+    fun emailExists(email: String, excludeId: Int = -1): Boolean {
+        val db = readableDatabase
+        val cursor = if (excludeId == -1) {
+            db.query(TABLE_USER, arrayOf(KEY_ID), "$KEY_EMAIL=?", arrayOf(email),
+                null, null, null)
+        } else {
+            db.query(TABLE_USER, arrayOf(KEY_ID), "$KEY_EMAIL=? AND $KEY_ID!=?",
+                arrayOf(email, excludeId.toString()), null, null, null)
+        }
+        val exists = cursor.count > 0
+        cursor.close()
+        db.close()
+        return exists
+    }
+
+    /** Count how many users have role = 'ADMIN'. Used to block deleting the last admin. */
+    fun countAdmins(): Int {
+        val db = readableDatabase
+        val cursor = db.query(TABLE_USER, arrayOf(KEY_ID), "$KEY_ROLE=?",
+            arrayOf("ADMIN"), null, null, null)
+        val count = cursor.count
+        cursor.close()
+        db.close()
+        return count
+    }
+
+}

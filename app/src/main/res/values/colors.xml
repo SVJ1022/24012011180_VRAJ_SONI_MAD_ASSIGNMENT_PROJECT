@@ -1,5 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Legacy defaults kept for compatibility -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- ── Design System Palette ── -->
+
+    <!-- Primary: Deep Navy -->
+    <color name="colorPrimary">#1A237E</color>
+    <color name="colorPrimaryDark">#0D1442</color>
+    <color name="colorPrimaryVariant">#283593</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+
+    <!-- Secondary: Gold Accent -->
+    <color name="colorAccent">#FFB300</color>
+    <color name="colorAccentDark">#FF8F00</color>
+    <color name="colorOnAccent">#1C1F2A</color>
+
+    <!-- Backgrounds & Surfaces -->
+    <color name="colorBackground">#F5F7FB</color>
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorOnSurface">#1C1F2A</color>
+    <color name="colorSurfaceVariant">#E8EAF6</color>
+
+    <!-- Text -->
+    <color name="colorTextPrimary">#1C1F2A</color>
+    <color name="colorTextSecondary">#5F6577</color>
+    <color name="colorTextHint">#9E9E9E</color>
+    <color name="colorTextOnPrimary">#FFFFFF</color>
+
+    <!-- Semantic -->
+    <color name="colorSuccess">#2E7D32</color>
+    <color name="colorSuccessLight">#E8F5E9</color>
+    <color name="colorWarning">#EF6C00</color>
+    <color name="colorWarningLight">#FFF3E0</color>
+    <color name="colorError">#D32F2F</color>
+    <color name="colorErrorLight">#FFEBEE</color>
+
+    <!-- Card / Divider -->
+    <color name="colorCardStroke">#E0E0E0</color>
+    <color name="colorDivider">#EEEEEE</color>
+
+    <!-- Semi-transparent overlays -->
+    <color name="colorOverlayNavy">#B31A237E</color>
+    <color name="colorWhite30">#4DFFFFFF</color>
+    <color name="colorWhite10">#1AFFFFFF</color>
+
+    <!-- Ganpat University ID card — Maroon brand -->
+    <color name="colorMaroon">#8E1B2F</color>
+    <color name="colorMaroonMid">#A51C30</color>
+    <color name="colorMaroonLight">#B0223A</color>
+
+    <!-- ID card screen background (slightly darker grey than default) -->
+    <color name="colorIDCardScreenBg">#E8ECF0</color>
 </resources>

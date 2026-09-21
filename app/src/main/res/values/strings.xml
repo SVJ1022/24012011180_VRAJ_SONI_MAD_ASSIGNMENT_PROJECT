@@ -1,3 +1,138 @@
 <resources>
-    <string name="app_name">24012011180_VRAJ_SONI_MAD_ASSIGNMENT_PROJECT</string>
+    <!-- App name -->
+    <string name="app_name">Digital ID</string>
+    <string name="app_tagline">Your Digital Identity, Always With You</string>
+    <string name="app_full_name">Digital Identity Management System</string>
+
+    <!-- Splash -->
+    <string name="cd_app_logo">Digital ID app logo</string>
+    <string name="cd_university_logo">University logo</string>
+
+    <!-- Main / Welcome -->
+    <string name="lbl_welcome">Welcome to</string>
+    <string name="lbl_digital_id">DIGITAL ID</string>
+    <string name="lbl_new_to_digital_id">New to Digital ID?</string>
+
+    <!-- Buttons -->
+    <string name="btn_login">Login</string>
+    <string name="btn_signup">Sign Up</string>
+    <string name="btn_create_account">Create Account</string>
+    <string name="btn_logout">Logout</string>
+    <string name="btn_save_digital_id">Save Digital ID</string>
+    <string name="btn_view_digital_id">View Digital ID</string>
+    <string name="btn_manage_students">Manage Students</string>
+    <string name="btn_back">Back</string>
+    <string name="btn_add_student">Add Student</string>
+
+    <!-- Auth questions -->
+    <string name="q_no_account">Don\'t have an account?</string>
+    <string name="q_have_account">Already have an account?</string>
+
+    <!-- Hints / Labels -->
+    <string name="hint_email">Email Address</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_confirm_password">Confirm Password</string>
+    <string name="hint_full_name">Full Name</string>
+    <string name="hint_phone">Phone Number</string>
+    <string name="hint_batch_year">Batch Year (e.g. 2024–2028)</string>
+    <string name="hint_role">Role (e.g. Admin, Student)</string>
+    <string name="hint_enrollment">Enrollment No.</string>
+    <string name="hint_college">College</string>
+    <string name="hint_degree">Degree</string>
+    <string name="hint_blood_group">Blood Group</string>
+    <string name="hint_validity">Validity</string>
+
+    <!-- Dashboard -->
+    <string name="greeting_hello">Hello,</string>
+    <string name="lbl_your_digital_id">Your Digital ID</string>
+    <string name="lbl_id_ready">Your ID is ready to view</string>
+    <string name="lbl_admin_dashboard">Admin Dashboard</string>
+    <string name="lbl_admin_subtitle">Manage your institution\'s digital records</string>
+    <string name="lbl_student_mgmt">User Management</string>
+    <string name="lbl_student_mgmt_desc">View, add, edit and delete registered users</string>
+    <string name="lbl_digital_ids">Manage Digital IDs</string>
+    <string name="lbl_digital_ids_desc">Assign and update student Digital IDs</string>
+
+    <!-- Student List -->
+    <string name="lbl_student_management">Student Management</string>
+    <string name="lbl_manage_records">Manage Digital ID Records</string>
+    <string name="hint_search_students">Search students…</string>
+    <string name="lbl_students">Students</string>
+    <string name="col_name">Name</string>
+    <string name="col_enrollment">Enrollment No.</string>
+    <string name="col_batch">Batch</string>
+    <string name="col_id_status">ID Status</string>
+
+    <!-- ID Status chips -->
+    <string name="status_assigned">ID Assigned</string>
+    <string name="status_pending">Pending</string>
+
+    <!-- Digital ID Card -->
+    <string name="lbl_digital_id_title">Digital ID Card</string>
+    <string name="lbl_student">STUDENT</string>
+    <string name="lbl_valid_till">Valid Till</string>
+    <string name="lbl_colon">:</string>
+    <string name="cd_barcode">Student barcode</string>
+    <string name="cd_student_band">Student vertical band</string>
+    <string name="cd_guni_logo">Ganpat University logo mark</string>
+
+    <!-- Table labels — NO trailing colon (layout has a separate ":" column) -->
+    <string name="lbl_college">College</string>
+    <string name="lbl_degree">Degree</string>
+    <string name="lbl_blood_group">B.Group</string>
+    <string name="lbl_mobile">Mobile</string>
+    <string name="lbl_validity">Validity</string>
+    <string name="lbl_enrollment">Enrollment</string>
+
+    <!-- Manage Digital IDs screen (new) -->
+    <string name="lbl_manage_digital_ids">Manage Digital IDs</string>
+    <string name="lbl_manage_digital_ids_sub">View and update student Digital IDs</string>
+    <string name="lbl_no_students_found">No students found</string>
+
+    <!-- Add/Update Digital ID -->
+    <string name="lbl_digital_id_management">Digital ID Management</string>
+    <string name="cd_upload_photo">Upload student photo — tap to select</string>
+    <string name="cd_student_photo">Student photo</string>
+    <string name="cd_camera_icon">Tap to change photo</string>
+
+    <!-- Content descriptions for icons -->
+    <string name="cd_logout_icon">Logout</string>
+    <string name="cd_id_card_icon">Digital ID card icon</string>
+    <string name="cd_back_btn">Go back</string>
+
+    <!-- Admin Dashboard — User Management card (replaces Student Management) -->
+    <string name="lbl_user_mgmt">User Management</string>
+    <string name="lbl_user_mgmt_desc">View, add, edit and delete registered users</string>
+
+    <!-- User Management screen -->
+    <string name="lbl_user_management_title">User Management</string>
+    <string name="lbl_user_management_sub">Manage all registered users</string>
+    <string name="hint_search_users">Search users…</string>
+    <string name="lbl_users">Users</string>
+    <string name="lbl_no_users_found">No users found</string>
+    <string name="btn_add_user">Add User</string>
+    <string name="lbl_add_user">Add User</string>
+    <string name="lbl_edit_user">Edit User</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="hint_password_edit">Password (leave blank to keep existing)</string>
+    <string name="role_admin">ADMIN</string>
+    <string name="role_student">STUDENT</string>
+    <string name="chip_admin">Admin</string>
+    <string name="chip_student">Student</string>
+
+    <!-- User form validation messages -->
+    <string name="err_fill_all_fields">Please fill all required fields</string>
+    <string name="err_invalid_email">Enter a valid email address</string>
+    <string name="err_email_exists">This email is already registered</string>
+    <string name="err_password_short">Password must be at least 4 characters</string>
+    <string name="msg_user_created">User created successfully</string>
+    <string name="msg_user_updated">User updated successfully</string>
+
+    <!-- Delete user dialog -->
+    <string name="dlg_delete_user_title">Delete User?</string>
+    <string name="dlg_delete_user_msg">Delete this user and their Digital ID (if any)? This cannot be undone.</string>
+    <string name="dlg_delete_confirm">Delete</string>
+    <string name="err_cannot_delete_self">Cannot delete your own account</string>
+    <string name="err_last_admin">Cannot delete the last admin account</string>
 </resources>
